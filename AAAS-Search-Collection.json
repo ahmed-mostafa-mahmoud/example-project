@@ -1,5 +1,8 @@
 { "test": "Git testing"
+ feature-2
 	branch: "2"
+
+
   "$schema" : "http://json-schema.org/draft-06/schema#",
   "id" : "http://aaas.github.io/science-standard-json/v1/schema.json",
   "type" : "object",
