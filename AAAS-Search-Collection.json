@@ -1,0 +1,599 @@
+{ "test": "Git testing"
+  "$schema" : "http://json-schema.org/draft-06/schema#",
+  "id" : "http://aaas.github.io/science-standard-json/v1/schema.json",
+  "type" : "object",
+  "additionalProperties" : false,
+  "definitions" : {
+    "person" : {
+      "additionalProperties" : true,
+      "properties" : {
+        "full_name" : {"type" : ["string","null"]},
+        "given_name" : {"type" : ["string","null"]},
+        "surname" : {"type" : ["string","null"]},
+        "email" : {"type" : ["string","null"],"format" : "email"},
+        "source_url" : {"$ref" : "#/definitions/url"},
+        "meta" : {
+          "properties" : {
+            "bio" : {"type" : ["string","null"]},
+            "affiliation" : {
+              "type" : ["string", "null"]},
+            "twitter_handle" : {"type" : ["string","null"]}
+          }
+        }
+      }
+    },
+    "date" : {
+      "title": "Date",
+      "type" : [
+        "string",
+        "null"
+      ],
+      "format" : "date-time",
+      "examples" : [
+        "2017-10-22T05:33:16.386Z"
+      ]
+    },
+    "mediaObject" : {
+      "additionalProperties" : false,
+      "type" : "object",
+      "required" : [
+        "source_url",
+        "filename",
+        "filemime"
+      ],
+      "properties" : {
+        "meta" : {
+          "additionalProperties" : true,
+          "type" : [
+            "object",
+            "null"
+          ]
+        },
+        "filename" : {
+          "type" : "string"
+        },
+        "title" : {
+          "type" : [
+            "string",
+            "null"
+          ]
+        },
+        "source_url" : {
+          "$ref" : "#/definitions/url"
+        },
+        "thumbnail_url" : {
+          "$ref" : "#/definitions/url"
+        },
+        "caption" : {
+          "type" : [
+            "string",
+            "null"
+          ]
+        },
+        "credit" : {
+          "type" : [
+            "string",
+            "null"
+          ]
+        },
+        "alt_text" : {
+          "type" : [
+            "string",
+            "null"
+          ]
+        },
+        "usage_medium" : {
+          "type" : [
+            "string",
+            "null"
+          ]
+        },
+        "filemime" : {
+          "type" : "string"
+        },
+        "usage_permissions" : {
+          "type" : [
+            "string",
+            "null"
+          ]
+        },
+        "meta" : {
+          "type" : [
+            "object",
+            "null"
+          ],
+          "properties" : {
+            "duration" : {
+              "type" : [
+                "string",
+                "null"
+              ]
+            },
+            "contentSize" : {
+              "type" : [
+                "string",
+                "null"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "url" : {
+      "type" : [
+        "string",
+        "null"
+      ],
+      "title" : "URL"
+    },
+    "link" : {
+      "type" : "object",
+      "required" : [
+        "url"
+      ],
+      "properties" : {
+        "url" : {
+          "$ref" : "#/definitions/url"
+        },
+        "title" : {
+          "type" : [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "jobPosting" : {
+      "type" : [
+        "string",
+        "null"
+      ],
+      "required" : [
+        "title"
+      ],
+      "properties" : {
+        "baseSalary" : {
+          "type" : [
+            "string",
+            "null"
+          ],
+          "description" : "The base salary of the job or of an employee in an this role"
+        },
+        "datePosted" : {
+          "$ref" : "#/definitions/date",
+          "description" : "Publication date for the job posting. Same as published_at"
+        },
+        "educationRequirements" : {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description" : "Educational background needed for the position or occupation"
+        },
+        "employmentType" : {
+          "type" : [
+            "string",
+            "null"
+          ],
+          "description" : "Type of employment",
+          "examples" : [
+            "full-time",
+            "part-time",
+            "contract",
+            "seasonal",
+            "internship"
+          ]
+        },
+        "estimatedSalary" : {
+          "type" : [
+            "string",
+            "null"
+          ],
+          "description" : "A property describing the estimated salary for a job posting based on a variety of variables including, but not limited to industry, job title, and location. The estimated salary is usually computed by outside organizations and therefore the hiring organization is not bound to this estimated salary."
+        },
+        "experienceRequirements" : {
+          "type" : [
+            "string",
+            "null"
+          ],
+          "description" : "Description of skills and experience needed for the position or occupation."
+        },
+        "hiringOrganization" : {
+          "type" : [
+            "string",
+            "null"
+          ],
+          "description" : "Organization offering the job position."
+        },
+        "incentiveCompensation" : {
+          "type" : [
+            "string",
+            "null"
+          ],
+          "description" : "Description of bonus and commission compensation aspects of the job."
+        },
+        "industry" : {
+          "type" : [
+            "string",
+            "null"
+          ],
+          "description" : "The industry associated with the job position."
+        },
+        "jobBenefits" : {
+          "type" : [
+            "string",
+            "null"
+          ],
+          "description" : "Description of benefits associated with the job."
+        },
+        "jobLocation" : {
+          "type" : [
+            "string",
+            "null"
+          ],
+          "description" : "A (typically single) geographic location associated with the job position."
+        },
+        "occupationalCategory" : {
+          "type" : [
+            "string",
+            "null"
+          ],
+          "description" : "Category or categories describing the job. Use BLS O*NET-SOC taxonomy: http://www.onetcenter.org/taxonomy.html. Ideally includes textual label and formal code, with the property repeated for each applicable value.",
+          "items" : {
+            "type" : [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "qualifications" : {
+          "type" : [
+            "string",
+            "null"
+          ],
+          "description" : "Specific qualifications required for this role or Occupation."
+        },
+        "relevantOccupation" : {
+          "type" : [
+            "string",
+            "null"
+          ],
+          "description" : "The occupation for the JobPosting."
+        },
+        "responsibilities" : {
+          "type" : [
+            "string",
+            "null"
+          ],
+          "description" : "Responsibilities associated with this role or occupation."
+        },
+        "salaryCurrency" : {
+          "type" : [
+            "string",
+            "null"
+          ],
+          "description" : "The currency (coded using ISO 4217 ) used for the main salary information in this job posting or for this employee.",
+          "examples" : [
+            "USD",
+            "EUR",
+            "CAD"
+          ]
+        },
+        "skills" : {
+          "type" : [
+            "string",
+            "null"
+          ],
+          "description" : "Skills required to fulfill this role."
+        },
+        "specialCommitments" : {
+          "type" : [
+            "string",
+            "null"
+          ],
+          "description" : "Any special commitments associated with this job posting. Valid entries include VeteranCommit, MilitarySpouseCommit, etc."
+        },
+        "title" : {
+          "type" : "string",
+          "description" : "The title of the job."
+        },
+        "validThrough" : {
+          "$ref" : "#/definitions/date",
+          "description" : "The date after when the item is not valid. For example the end of an offer, salary period, or a period of opening hours."
+        },
+        "workHours" : {
+          "type" : [
+            "string",
+            "null"
+          ],
+          "description" : "The typical working hours for this job",
+          "examples" : [
+             "1st shift",
+             "night shift",
+             "8am-5pm"
+          ]
+        }
+      }
+    },
+    "creativeWork" : {
+      "additionalProperties" : false,
+      "type" : "object",
+      "properties" : {
+        "@type" : {
+          "type" : "string"
+        },
+        "meta" : {
+          "type" : [
+            "object",
+            "null"
+          ]
+        },
+        "creator" : {
+          "type" : [
+            "string",
+            "null"
+          ]
+        },
+        "name" : {
+          "type" : [
+            "string",
+            "null"
+          ]
+        },
+        "copyrightYear" : {
+          "type" : [
+            "string",
+            "null"
+          ]
+        },
+        "publisher" : {
+          "type" : [
+            "string",
+            "null"
+          ]
+        },
+        "numberOfPages" : {
+          "type" : [
+            "string",
+            "null"
+          ]
+        },
+        "url" : {
+          "$ref" : "#/definitions/url"
+        }
+      }
+    },
+    "organization" : {
+      "type" : "object",
+      "properties" : {
+        "@type" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "address" : {
+          "type" : "string"
+        },
+        "telephone" : {
+          "type" : "string"
+        },
+        "url" : {
+          "$ref" : "#/definitions/url"
+        },
+        "logo" : {
+          "type" : [
+            "array",
+            "null"
+          ],
+          "items" : {
+            "$ref" : "#/definitions/mediaObject"
+          }
+        }
+      }
+    }
+  },
+  "required" : [
+    "headline",
+    "article_type",
+    "source",
+    "source_url",
+    "content"
+  ],
+  "properties" : {
+    "id" : {
+      "type" : [
+        "string",
+        "null"
+      ],
+      "title" : "A unique identifier for this record",
+    },
+    "source_id" : {
+      "type" : [
+        "string",
+        "null"
+      ],
+      "title" : "Source ID",
+      "description" : "An identifier to link this record to the canonical version in the source system",
+      "examples" : [
+        "sciencemag_12345",
+        "advances_e1701699"
+      ]
+    },
+    "headline" : {
+      "type" : "object",
+      "properties" : {
+        "full" :{
+          "type" : [
+            "string",
+            "null"
+          ]
+        },
+        "short" : {
+          "type" : [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "anyOf": [
+        {
+          "required": [
+            "full"
+          ]
+        },
+        {
+          "required": [
+            "short"
+          ]
+        }
+      ]
+    },
+    "doi" : {
+      "type" : [
+        "string",
+        "null"
+      ],
+      "title" : "DOI",
+      "description" : "Digital Object Identifier for the original item",
+      "examples" : [
+        "10.1126/sciadv.1701699"
+      ]
+    },
+    "lang" : {
+      "title": "Language",
+      "description": "Language tags matching RFC 4646 specifications.",
+      "type" : "string",
+      "examples": [
+        "en-us",
+        "es",
+        "jp"
+      ]
+    },
+    "published_at" : {
+      "title" : "Publish date/time",
+      "description" : "Date and time the content was published at its source",
+      "$ref":"#/definitions/date"
+    },
+    "imported_at" : {
+      "title" : "Imported date/time",
+      "description" : "Date and time the content was imported into the current system",
+      "$ref":"#/definitions/date"
+    },
+    "article_type" :{
+      "type" : [
+        "string",
+        "null"
+      ]
+    },
+    "content" : {
+      "type" : "string",
+      "title" : "Content",
+      "description" : "The main content of this document."
+    },
+    "abstract" : {
+      "type" : [
+        "string",
+        "null"
+      ],
+      "title": "Abstract",
+      "description": "Summarized description of the content of the document."
+    },
+    "teaser" : {
+      "type" : [
+        "string",
+        "null"
+      ],
+      "title": "Teaser",
+      "description": "A very short summary or introduction to this piece of content, for use in previews, social sharing, meta description, etc."
+    },
+    "contributors" : {
+      "type" : [
+        "array",
+        "null"
+      ],
+      "items" : {
+        "$ref" : "#/definitions/person"
+      }
+    },
+    "media" : {
+      "type" : [
+        "array",
+        "null"
+      ],
+      "items" : {
+        "$ref" : "#/definitions/mediaObject"
+      }
+    },
+    "tags" : {
+      "type" : [
+        "array",
+        "null"
+      ]
+    },
+    "meta" : {
+      "type" : "object",
+      "properties" : {
+        "overline" : {
+          "type" : [
+            "string",
+            "null"
+          ]
+        },
+        "volume" : {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "issue" : {
+          "type" : [
+            "string",
+            "null"
+          ]
+        },
+        "links" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/link"
+          }
+        },
+        "schemaOrg" : {
+          "properties" : {
+            "sponsor" : {
+              "$ref" : "#/definitions/organization"
+            },
+            "company" : {
+              "$ref" : "#/definitions/organization"
+            },
+            "jobPosting" : {
+              "$ref" : "#/definitions/jobPosting"
+            },
+            "mediaReviewed" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/creativeWork"
+              }
+            }
+          }
+        }
+      }
+    },
+    "source": {
+      "type" : "string",
+      "title" : "Content source",
+      "description" : "",
+      "examples" : [
+        "Science",
+        "News from Science",
+        "Science Advances",
+        "Science Translational Medicine",
+        "Madgex",
+        "EurekAlert!"
+      ]
+    },
+    "source_url": {
+      "$ref" : "#/definitions/url"
+    }
+  }
+}
